@@ -1,6 +1,9 @@
 # Statmark: Student Final Score Prediction Analysis
 
-Statmark is an end-to-end data science project that examines the factors affecting students' academic performance and predicts final scores using machine learning models.
+**Course:** COM2502 Introduction to Data Science
+**Institution:** Ankara University, Computer Engineering
+
+Statmark is an end-to-end data science project conducted within the scope of the Computer Engineering department at Ankara University. It examines the factors affecting students' academic performance and predicts final scores using machine learning models.
 
 ## Project Goal
 This study aims to model the impact of variables such as attendance, study hours, and previous grades on final success, and to identify the algorithm with the highest explainability rate (R-Squared).
