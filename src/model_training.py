@@ -5,6 +5,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
+from seaborn import sns
+import matplotlib.pyplot as plt
 
 # Load the cleaned dataset
 df = pd.read_csv('data/finalscore_cleaned.csv')
@@ -60,4 +62,28 @@ xgb_r2 = r2_score(y_test, y_xgb_pred)
 print(f"XGBoost Mean Squared Error: {xgb_mse}")
 print(f"XGBoost R-squared: {xgb_r2}")
 
+# Analyze feature importance for Random Forest and XGBoost
+rf_importances = rf_model.feature_importances_
+xgb_importances = xgb_model.feature_importances_
+
+# Create a DataFrame to compare feature importances
+feature_importances = pd.DataFrame({
+    'Feature': X.columns,
+    'Random Forest Importance': rf_importances,
+    'XGBoost Importance': xgb_importances
+}).sort_values(by='Random Forest Importance', ascending=False)
+
+# Visualize feature importances
+sns.barplot(x='Random Forest Importance', y='Feature', data=feature_importances)
+plt.title('Feature Importances from Random Forest')
+plt.xlabel('Importance')
+plt.ylabel('Feature')
+plt.show()
+
+# Visualize feature importances for XGBoost
+sns.barplot(x='XGBoost Importance', y='Feature', data=feature_importances)
+plt.title('Feature Importances from XGBoost')
+plt.xlabel('Importance')
+plt.ylabel('Feature')
+plt.show()
 
