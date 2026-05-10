@@ -4,6 +4,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
+from xgboost import XGBRegressor
 
 # Load the cleaned dataset
 df = pd.read_csv('data/finalscore_cleaned.csv')
@@ -45,5 +46,18 @@ rf_r2 = r2_score(y_test, y_rf_pred)
 # Print the evaluation results for the random forest model
 print(f"Random Forest Mean Squared Error: {rf_mse}")
 print(f"Random Forest R-squared: {rf_r2}")
+
+# Train an XGBoost regressor
+xgb_model = XGBRegressor(n_estimators=100, random_state=42)
+xgb_model.fit(X_train_scaled, y_train)
+
+# Make predictions and evaluate the XGBoost model
+y_xgb_pred = xgb_model.predict(X_test_scaled)
+xgb_mse = mean_squared_error(y_test, y_xgb_pred)
+xgb_r2 = r2_score(y_test, y_xgb_pred)
+
+# Print the evaluation results for the XGBoost model
+print(f"XGBoost Mean Squared Error: {xgb_mse}")
+print(f"XGBoost R-squared: {xgb_r2}")
 
 
