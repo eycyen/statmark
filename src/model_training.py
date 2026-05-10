@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
 
 # Load the cleaned dataset
 df = pd.read_csv('data/finalscore_cleaned.csv')
@@ -25,9 +26,24 @@ model.fit(X_train_scaled, y_train)
 y_pred = model.predict(X_test_scaled)
 
 # Calculate evaluation metrics
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
+lr_mse = mean_squared_error(y_test, y_pred)
+lr_r2 = r2_score(y_test, y_pred)
 
 # Print the evaluation results
-print(f"Mean Squared Error: {mse}")
-print(f"R-squared: {r2}")
+print(f"Linear Regression Mean Squared Error: {lr_mse}")
+print(f"Linear Regression R-squared: {lr_r2}")
+
+# Train a random forest regressor
+rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+rf_model.fit(X_train_scaled, y_train)
+
+# Make predictions and evaluate the random forest model
+y_rf_pred = rf_model.predict(X_test_scaled)
+rf_mse = mean_squared_error(y_test, y_rf_pred)
+rf_r2 = r2_score(y_test, y_rf_pred)
+
+# Print the evaluation results for the random forest model
+print(f"Random Forest Mean Squared Error: {rf_mse}")
+print(f"Random Forest R-squared: {rf_r2}")
+
+
