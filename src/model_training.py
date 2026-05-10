@@ -5,7 +5,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
-from seaborn import sns
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load the cleaned dataset
