@@ -14,6 +14,7 @@ sns.histplot(df['Final_Score'], bins=20, kde=True)
 plt.title('Distribution of Final Scores')
 plt.xlabel('Final Score')
 plt.ylabel('Frequency')
+plt.savefig('final_score_distribution.png')  # Save the plot as an image file
 plt.show()
 
 # Visualize the relationship between Final_Score and Diet_Quality
@@ -22,11 +23,13 @@ sns.boxplot(x='Diet_Quality', y='Final_Score', data=df)
 plt.title('Final Score by Diet Quality')
 plt.xlabel('Diet Quality (0=Poor, 1=Average, 2=Good)')
 plt.ylabel('Final Score')
+plt.savefig('final_score_by_diet_quality.png')  # Save the plot as an image file
 plt.show()
 
 # Visualize the correlation matrix
 plt.figure(figsize=(12, 10))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
 plt.title('Correlation Matrix')
+plt.savefig('correlation_matrix.png')  # Save the plot as an image file
 plt.show()
 
