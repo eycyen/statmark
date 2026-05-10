@@ -78,6 +78,8 @@ sns.barplot(x='Random Forest Importance', y='Feature', data=feature_importances)
 plt.title('Feature Importances from Random Forest')
 plt.xlabel('Importance')
 plt.ylabel('Feature')
+# Save the plot with high resolution
+plt.savefig('feature_importances_rf.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Visualize feature importances for XGBoost
@@ -85,5 +87,6 @@ sns.barplot(x='XGBoost Importance', y='Feature', data=feature_importances)
 plt.title('Feature Importances from XGBoost')
 plt.xlabel('Importance')
 plt.ylabel('Feature')
+# Save the plot with high resolution
+plt.savefig('feature_importances_xgb.png', dpi=300, bbox_inches='tight')
 plt.show()
-
