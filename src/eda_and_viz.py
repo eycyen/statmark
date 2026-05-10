@@ -24,3 +24,9 @@ plt.xlabel('Diet Quality (0=Poor, 1=Average, 2=Good)')
 plt.ylabel('Final Score')
 plt.show()
 
+# Visualize the correlation matrix
+plt.figure(figsize=(12, 10))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Matrix')
+plt.show()
+
