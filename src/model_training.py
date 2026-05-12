@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 import seaborn as sns
 import matplotlib.pyplot as plt
+import joblib
 
 # Load the cleaned dataset
 df = pd.read_csv('data/finalscore_cleaned.csv')
@@ -78,8 +79,9 @@ sns.barplot(x='Random Forest Importance', y='Feature', data=feature_importances)
 plt.title('Feature Importances from Random Forest')
 plt.xlabel('Importance')
 plt.ylabel('Feature')
+
 # Save the plot with high resolution
-plt.savefig('feature_importances_rf.png', dpi=300, bbox_inches='tight')
+plt.savefig('figures/feature_importances_rf.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Visualize feature importances for XGBoost
@@ -87,6 +89,16 @@ sns.barplot(x='XGBoost Importance', y='Feature', data=feature_importances)
 plt.title('Feature Importances from XGBoost')
 plt.xlabel('Importance')
 plt.ylabel('Feature')
+
 # Save the plot with high resolution
-plt.savefig('feature_importances_xgb.png', dpi=300, bbox_inches='tight')
+plt.savefig('figures/feature_importances_xgb.png', dpi=300, bbox_inches='tight')
 plt.show()
+
+# Save the trained models
+joblib.dump(model, 'models/linear_regression_model.pkl', compress=3)
+
+# random_forest is abandoned because of the high file size due to slow personal upload speeds.
+# joblib.dump(rf_model, 'models/random_forest_model.pkl', compress=3)
+
+joblib.dump(xgb_model, 'models/xgboost_model.pkl', compress=3)
+joblib.dump(scaler, 'models/scaler.pkl', compress=3)
